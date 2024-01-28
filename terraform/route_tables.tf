@@ -12,6 +12,6 @@ resource "aws_route_table" "second_rt" {
 }
 
 resource "aws_route_table_association" "public_subnet_asso" {
-  subnet_id      = aws_subnet
+  subnet_id      = aws_subnet.public_subnets.id
   route_table_id = aws_route_table.second_rt.id
 }
