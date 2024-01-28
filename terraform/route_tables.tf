@@ -1,5 +1,5 @@
 resource "aws_route_table" "second_rt" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.myvpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -12,7 +12,6 @@ resource "aws_route_table" "second_rt" {
 }
 
 resource "aws_route_table_association" "public_subnet_asso" {
-  count = length(var.public_subnet_cidrs)
-  subnet_id      = element(aws_subnet.public_subnets[*].id, count.index)
+  subnet_id      = aws_subnet
   route_table_id = aws_route_table.second_rt.id
 }
